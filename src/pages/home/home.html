@@ -1,0 +1,168 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>INHS Voting App</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="light" (click)="logout()">
+        <ion-icon name="ios-power-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div padding >
+    <ion-segment [(ngModel)]="pet">
+      <ion-segment-button value="partylist">
+        Party List
+      </ion-segment-button>
+      <ion-segment-button value="vote">
+        Vote Here
+      </ion-segment-button>
+      <ion-segment-button value="result">
+         Results
+      </ion-segment-button>
+      <ion-segment-button value="help">
+          Help!
+        </ion-segment-button>
+    </ion-segment>
+  </div>
+  
+  <div [ngSwitch]="pet" >
+   <div *ngIf="party">
+    <ion-list *ngSwitchCase="'partylist'">
+      <ion-item *ngFor="let can of party.data" color="secondary" (click)="clickParty(can.id)">
+       <ion-icon name="md-finger-print" item-start></ion-icon>
+       {{can.name}}
+      </ion-item>
+     
+    </ion-list>
+   </div>
+  
+   <div *ngIf="candidate">
+    <ion-list *ngSwitchCase="'vote'">
+
+      <ion-item color="secondary">President</ion-item>
+      <ion-list radio-group [(ngModel)]="president">
+          <ion-item *ngFor="let can of candidate.president">
+            <ion-label>{{can.user.fname}} {{can.user.lname}}</ion-label>
+            <ion-radio value="{{can.user.id}}"> </ion-radio>
+          </ion-item>
+      </ion-list>  
+
+      <ion-item color="secondary">Vice-President</ion-item>
+      <ion-list radio-group [(ngModel)]="vice">
+          <ion-item *ngFor="let can of candidate.vice">
+            <ion-label>{{can.user.fname}} {{can.user.lname}}</ion-label>
+            <ion-radio value="{{can.user.id}}"> </ion-radio>
+          </ion-item>
+      </ion-list>  
+
+      <ion-item color="secondary">Secretary</ion-item>
+      <ion-list radio-group [(ngModel)]="secretary">
+          <ion-item *ngFor="let can of candidate.secretary">
+            <ion-label>{{can.user.fname}} {{can.user.lname}}</ion-label>
+            <ion-radio value="{{can.user.id}}"> </ion-radio>
+          </ion-item>
+      </ion-list> 
+
+      <ion-item color="secondary">Treasurer</ion-item>
+      <ion-list radio-group [(ngModel)]="treasurer">
+          <ion-item *ngFor="let can of candidate.treasurer">
+            <ion-label>{{can.user.fname}} {{can.user.lname}}</ion-label>
+            <ion-radio value="{{can.user.id}}"> </ion-radio>
+          </ion-item>
+      </ion-list>
+
+      <ion-item color="secondary">Auditor</ion-item>
+      <ion-list radio-group [(ngModel)]="auditor">
+          <ion-item *ngFor="let can of candidate.auditor">
+            <ion-label>{{can.user.fname}} {{can.user.lname}}</ion-label>
+            <ion-radio value="{{can.user.id}}"> </ion-radio>
+          </ion-item>
+      </ion-list>
+
+      <ion-item color="secondary">P.I.O</ion-item>
+      <ion-list radio-group [(ngModel)]="pio">
+          <ion-item *ngFor="let can of candidate.pio">
+            <ion-label>{{can.user.fname}} {{can.user.lname}}</ion-label>
+            <ion-radio value="{{can.user.id}}"> </ion-radio>
+          </ion-item>
+      </ion-list>
+
+      <ion-item color="secondary">Bus. Mgt</ion-item>
+      <ion-list radio-group [(ngModel)]="bus">
+          <ion-item *ngFor="let can of candidate.bus">
+            <ion-label>{{can.user.fname}} {{can.user.lname}}</ion-label>
+            <ion-radio value="{{can.user.id}}"> </ion-radio>
+          </ion-item>
+      </ion-list>
+
+      <ion-item color="secondary">Peace Officer Pick two candidate</ion-item>
+    <ion-item>
+      <ion-label color="secondary">Select Officer</ion-label>
+      <ion-select [(ngModel)]="peace" multiple="true" (ionChange)="onSelect()">
+        <ion-option *ngFor="let can of candidate.peace" value="{{can.user.id}}">{{can.user.fname}} {{can.user.lname}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+      <ion-item color="secondary">Representative Grade {{candidate.user.grade}}</ion-item>
+      <ion-list radio-group [(ngModel)]="rep">
+        <div *ngFor="let can of candidate.reps">
+            <ion-item *ngIf="can.user.grade == candidate.user.grade">
+                <ion-label>{{can.user.fname}} {{can.user.lname}}</ion-label>
+                <ion-radio value="{{can.user.id}}"> </ion-radio>
+            </ion-item>
+        </div>
+        
+    </ion-list>
+
+      
+      <button ion-button block (click)="clickVote()">SUBMIT</button>  
+    </ion-list>
+   </div>
+
+   <div *ngIf="party">
+     
+    <ion-list *ngSwitchCase="'result'">
+        <h3 text-center>INHS Election Results</h3>
+      <ion-card *ngFor="let winner of party.winner">
+        <ion-card-header>
+         {{winner.position}}
+        </ion-card-header>
+        <ion-card-content>
+          {{winner.candidate}}
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+   </div>
+
+   <ion-list *ngSwitchCase="'help'" radio-group>
+      <ion-card>
+        <ion-card-header>
+          <h2 text-center><strong>Reminders for Voters</strong></h2>
+        </ion-card-header>
+        <ion-card-content>
+          1. Get your password with the Administrator supervision.
+          <br>
+          <br>
+          2. Log-in using your valid information.
+          <br>
+          <br>
+          3. Select your desired candidate
+          <br>
+          <br>
+          4. Please confirm your vote upon submitting it.
+          <br>
+          <br>
+          5. You are only allowed to vote once.
+          <br>
+          <br>
+          6. Please wait for the result of the voting result to be send by the administrator.
+          
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
+ 
+
+</ion-content>

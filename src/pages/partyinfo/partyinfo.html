@@ -1,0 +1,71 @@
+<!--
+  Generated template for the PartyinfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Party Informations</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div padding>
+        <ion-segment [(ngModel)]="pet">
+          <ion-segment-button value="candidate">
+            Candidates
+          </ion-segment-button>
+          <ion-segment-button value="platform">
+            Platforms
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+      
+      <div [ngSwitch]="pet">
+        <ion-list *ngSwitchCase="'candidate'">
+          <div *ngIf="info">
+            
+              <ion-card *ngFor="let can of info.member">
+                <ion-card-header>
+                  <strong>{{can.position.position}}</strong>
+                </ion-card-header>
+                <ion-card-content>
+                  
+                  <img src="https://e-votings.000webhostapp.com/candidate/{{can.image}}" alt="image here">
+                  <h3 text-center><strong>{{can.user.fname}} {{can.user.lname}}</strong></h3>
+                  <p text-center>Grade: {{can.user.grade}}</p>
+                </ion-card-content>
+              </ion-card>
+
+          </div>
+         
+        </ion-list>
+      
+        <ion-list *ngSwitchCase="'platform'">
+            <div *ngIf="info">
+                <ion-card>
+                    <ion-card-header>
+                      Platform
+                    </ion-card-header>
+                    <ion-card-content>
+                      {{info.party.platform}}
+                    </ion-card-content>
+                </ion-card>
+
+                <ion-card>
+                    <ion-card-header>
+                      Objectives
+                    </ion-card-header>
+                    <ion-card-content>
+                        {{info.party.objectives}}
+                    </ion-card-content>
+                </ion-card>
+            </div>
+        
+        </ion-list>
+      </div>
+</ion-content>
