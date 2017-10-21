@@ -1,26 +1,9 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+voting mobile app
+that let all the students/voters 
+vote their own candidates.
+students/voters are only allowed to votes once.
 
-## How to use this template
-
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
-
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
-
-### With the Ionic CLI:
-
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myBlank blank
-```
-
-Then, to run it, cd into `myBlank` and run:
-
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
-
-Substitute ios for android if not on a Mac.
-
+<a href="https://imgur.com/iZd2h2y"><img src="https://i.imgur.com/iZd2h2yt.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/cwr2cUS"><img src="https://i.imgur.com/cwr2cUSt.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/6QkIEYs"><img src="https://i.imgur.com/6QkIEYst.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/JOTDpt4"><img src="https://i.imgur.com/JOTDpt4t.png" title="source: imgur.com" /></a>
